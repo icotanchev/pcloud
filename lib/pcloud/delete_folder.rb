@@ -1,7 +1,7 @@
 module Pcloud
-  class ListFolder
+  class DeleteFolder
 
-    LIST_FOLDER_URL = "#{Pcloud::Constants::BASE_URL}/listfolder".freeze
+    DELETE_FOLDER_URL = "#{Pcloud::Constants::BASE_URL}/deletefolderrecursive".freeze
 
     attr_reader :destination_folder_id, :auth
 
@@ -10,8 +10,8 @@ module Pcloud
       @auth                  = Pcloud::Authentication.new
     end
 
-    def list_folder
-      RestClient.post(LIST_FOLDER_URL,
+    def delete_folder
+      RestClient.post(DELETE_FOLDER_URL,
         {
           folderid: destination_folder_id
         }.merge(auth.credentials)
